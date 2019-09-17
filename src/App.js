@@ -19,7 +19,36 @@ class App extends Component {
     let clock = now.getHours() + ":" + now.getMinutes();
     // this.setState({ x: e.pageX, y: e.pageY });
     this.setState({
-      ar: [...this.state.ar, { time: clock, x: e.pageX, y: e.pageY }],
+      ar: [
+        ...this.state.ar,
+        { time: clock, x: e.pageX, y: e.pageY, t: "click" }
+      ],
+      ar2: [
+        ...this.state.ar2,
+        <div
+          className="spot"
+          style={{ left: `${e.pageX - 10}px`, top: `${e.pageY - 10}px` }}
+        >
+          x
+        </div>
+      ]
+    });
+  };
+
+  touchTrack = (e, x) => {
+    let now = new Date();
+    let clock = now.getHours() + ":" + now.getMinutes();
+    // this.setState({ x: e.pageX, y: e.pageY });
+    this.setState({
+      ar: [
+        ...this.state.ar,
+        {
+          time: clock,
+          x: e.touches[0].clientX,
+          y: e.touches[0].clientY,
+          t: [x]
+        }
+      ],
       ar2: [
         ...this.state.ar2,
         <div
@@ -35,7 +64,7 @@ class App extends Component {
   displayList = () => {
     let list = this.state.ar.map((z, i) => (
       <li key={i}>
-        {i}. time: {z.time} x: {z.x} Y: {z.y}
+        {i}. time: {z.time} x: {z.x} Y: {z.y} trigger: {z.t}
       </li>
     ));
     return list;
@@ -51,6 +80,12 @@ class App extends Component {
       <div
         onClick={e => {
           this.handleClick(e);
+        }}
+        onTouchStart={event => {
+          this.touchTrack(event, "touch start");
+        }}
+        onTouchMove={event => {
+          this.touchTrack(event, "touch move");
         }}
         className="main"
       >

@@ -35,3 +35,10 @@ li {
   line-height: 15px;
   text-align: center;
 }
+
+.video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -93,6 +93,16 @@ class App extends Component {
         <div className="list">
           <ul>{this.displayList()}</ul>
         </div>
+        <div className="video">
+          <iframe
+            width="280"
+            height="157"
+            src="https://www.youtube.com/embed/Z-VfaG9ZN_U?&loop=1&playlist=Z-VfaG9ZN_U"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
       </div>
     );
   }
